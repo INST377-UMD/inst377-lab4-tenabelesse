@@ -1,0 +1,77 @@
+<html>
+<head>
+    <title>INST377: Lab 4</title>
+    <link rel="stylesheet" type="text/css" href="pagestyling.css">
+</head>
+<body>
+    <h1 id="mainHeading">INST377: Lab 4</h1>
+
+    <div class="section">
+        <h2>Alert Me Section</h2>
+        <form id="alertForm">
+            <label for="nameInput">Name:</label>
+            <input type="text" id="nameInput" required>
+            <button type="button" onclick="alertUser()">Alert Me</button>
+        </form>
+    </div>
+
+    <div class="section">
+        <h2>Change Color Section</h2>
+        <button onclick="toggleColor()">Change Color</button>
+    </div>
+
+    <div class="section">
+        <h2>Text Tester Section</h2>
+        <form name="contactForm" onsubmit="return formValidation()">
+            <label for="firstName">First Name:</label>
+            <input type="text" placeholder="Bob" id="firstName" required>
+            <br>
+            <button type="submit">Validate Text</button>
+        </form>
+    </div>
+
+    <div class="section">
+        <h2>Add Text Section</h2>
+        <button onclick=" addText()">Add Text</button>
+
+    </div>
+
+    <script type="text/javascript">
+        function alertUser() {
+            let name = document.getElementById('nameInput').value;
+            if (name.trim() !== "") {
+                alert(" Hi " + name + "!");
+            } else {
+                alert("You did not enter a valid first name!");
+            }
+        }
+
+        let isBlue = true;
+        function toggleColor() {
+            document.body.style.backgroundColor = isBlue ? 'green' : 'blue';
+            isBlue = !isBlue;
+        }
+
+        function addText() {
+            let heading = document.getElementById('mainHeading');
+            heading.textContent += " Add Text";
+        }
+
+        function formValidation() {
+            console.log('Validating user input:', document.contactForm.firstName.value);
+            const validationRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+            let input = document.contactForm.firstName.value.trim();
+
+            if (input === "") {
+                alert('You did not enter a valid first name!');
+                return false;
+            }
+            
+            if (validationRegex.test(input)) {
+                alert('Yeah... Invalid input buddy');
+                return false;
+            }
+        }
+    </script>
+</body>
+</html> 
